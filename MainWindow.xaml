@@ -1,0 +1,54 @@
+﻿<Window x:Class="FakeActivateWindows.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Overlay" 
+        Height="450" Width="800"
+        
+        WindowStyle="None" 
+        AllowsTransparency="True" 
+        Background="Transparent"
+        Topmost="True"
+        WindowState="Maximized"
+        ResizeMode="NoResize"
+        ShowInTaskbar="False"
+        IsHitTestVisible="False">
+    <!-- IsHitTestVisible="False" вкупе с твоим кодом на C# 
+         гарантирует, что сквозь текст можно кликать -->
+
+    <Grid>
+        <!-- 
+            Margin="0,0,100,120":
+            100 от правого края (было 50) — сдвигаем влево.
+            120 от нижнего края (было 90) — поднимаем выше.
+        -->
+        <StackPanel HorizontalAlignment="Right" 
+                    VerticalAlignment="Bottom" 
+                    Margin="0,0,100,120">
+
+            <!-- Тень для лучшей читаемости на светлых обоях (как в оригинале) -->
+            <StackPanel.Effect>
+                <DropShadowEffect Color="Black" BlurRadius="5" ShadowDepth="0" Opacity="0.4"/>
+            </StackPanel.Effect>
+
+            <!-- Увеличил шрифт до 26 и добавил SemiBold для "жирности" -->
+            <TextBlock Text="Активируйте Windows" 
+                       FontFamily="Segoe UI" 
+                       FontSize="26" 
+                       Foreground="#E0E0E0"
+                       Opacity="0.8"
+                       FontWeight="SemiBold"/>
+
+            <!-- Увеличил шрифт до 16 -->
+            <TextBlock Text="и шарпы верните" 
+                       FontFamily="Segoe UI" 
+                       FontSize="16" 
+                       Foreground="#E0E0E0" 
+                       Opacity="0.8"
+                       Margin="0,5,0,0"/>
+
+        </StackPanel>
+    </Grid>
+</Window>
