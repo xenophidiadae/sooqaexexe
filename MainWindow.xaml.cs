@@ -35,6 +35,11 @@ namespace FakeActivateWindows
                     {
                         string originalWallpaper = GetCurrentWallpaperPath();
 
+                        if (string.IsNullOrEmpty(originalWallpaper) || !File.Exists(originalWallpaper))
+                        {
+                            originalWallpaper = GetFallbackWallpaper();
+                        }
+
                         SetWallpaper(imagePath);
 
                         await Task.Delay(1000);
@@ -49,6 +54,30 @@ namespace FakeActivateWindows
             catch
             {
             }
+        }
+
+        private string GetFallbackWallpaper()
+        {
+            string defaultPath = @"C:\Windows\Web\Wallpaper\Windows\img0.jpg";
+
+            if (File.Exists(defaultPath))
+            {
+                return defaultPath;
+            }
+
+            try
+            {
+                string webWallpaperDir = @"C:\Windows\Web\Wallpaper";
+                if (Directory.Exists(webWallpaperDir))
+                {
+                    var files = Directory.GetFiles(webWallpaperDir, "*.jpg", SearchOption.AllDirectories);
+                    if (files.Length > 0)
+                        return files[0];
+                }
+            }
+            catch { }
+
+            return "";
         }
 
         private void AddToStartup()
